@@ -19,7 +19,7 @@ public class DocumentEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "document_type_id", nullable = false)
-    private DocumentTypeEntity documentTypeId;
+    private DocumentTypeEntity documentType;
 
     private String owner_type;
 

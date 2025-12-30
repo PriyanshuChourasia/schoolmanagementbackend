@@ -15,7 +15,6 @@ import java.util.Map;
 @Tag(name = "Index Controller", description = "Base level controller")
 public class Controller {
 
-    @Tag(name = "Index")
     @GetMapping("")
     public ResponseEntity<Map<String,Object>> index(){
         return ResponseHandler.generateResponse("Welcome to School Management System");

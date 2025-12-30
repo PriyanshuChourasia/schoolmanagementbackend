@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +34,34 @@ public class UserEntity extends BaseEntity {
     @Email(message = "Invalid email")
     private String email;
 
+    @Column(name = "is_active")
+    private boolean isActive = true;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Password cannot be empty")
+    @Size(min = 6,message = "Password length cannot be less than 6")
+    private String password;
+
+    @Column(name = "contact_no", nullable = false)
+    private String contactNo;
+
+    @Column(name = "alt_contact_no")
+    private String altContactNo;
+
+    private LocalDate dob;
+
+    @Column(name = "userable_type")
+    private String userableType;
+
+    @Column(name = "userable_id")
+    private Long userableId;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+
+
+// getter setter methods
     public String getName() {
         return name;
     }
@@ -88,13 +118,6 @@ public class UserEntity extends BaseEntity {
         this.dob = dob;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public Gender getGender() {
         return gender;
@@ -104,21 +127,12 @@ public class UserEntity extends BaseEntity {
         this.gender = gender;
     }
 
-    @Column(nullable = false)
-    @Min(value = 6,message = "Password length cannot be less than 6")
-    private String password;
+    public void setIsActive(boolean active){
+        this.isActive = active;
+    }
 
-    @Column(name = "contact_no", nullable = false)
-    private String contactNo;
-
-    @Column(name = "alt_contact_no")
-    private String altContactNo;
-
-    private LocalDate dob;
-
-    private int age;
-
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+    public boolean getIsActive(){
+        return isActive;
+    }
 
 }

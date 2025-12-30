@@ -1,0 +1,48 @@
+package com.wishalpha.schoolmanagement.master.service.impl;
+
+
+import com.wishalpha.schoolmanagement.master.dto.CreateUserDTO;
+import com.wishalpha.schoolmanagement.master.dto.UserDTO;
+import com.wishalpha.schoolmanagement.master.entity.UserEntity;
+import com.wishalpha.schoolmanagement.master.mapper.UserMapper;
+import com.wishalpha.schoolmanagement.master.repository.UserRepository;
+import com.wishalpha.schoolmanagement.master.service.UserService;
+import com.wishalpha.schoolmanagement.master.utils.CodeGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    private final static Logger logger = LoggerFactory.getLogger(UserService.class);
+    @Autowired
+    private  UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CodeGenerator codeGenerator;
+
+    @Override
+    public List<UserDTO> getAll(){
+        List<UserEntity> userEntities = userRepository.findAll();
+        List<UserDTO> userDTOS = userEntities.stream().map(UserMapper::toDTO).toList();
+        return userDTOS;
+    }
+
+
+    @Override
+    public UserDTO create(CreateUserDTO createUserDTO){
+        UserEntity user = UserMapper.toEntity(createUserDTO);
+        logger.info("User, {}",createUserDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(createUserDTO.getEmail()));
+        user.setCode(codeGenerator.generateCode(createUserDTO.getEmail()));
+        UserEntity createUser = userRepository.save(user);
+        return UserMapper.toDTO(createUser);
+    }
+}

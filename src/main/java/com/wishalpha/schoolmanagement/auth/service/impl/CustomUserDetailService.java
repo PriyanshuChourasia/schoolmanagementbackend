@@ -1,4 +1,4 @@
-package com.wishalpha.schoolmanagement.auth.service;
+package com.wishalpha.schoolmanagement.auth.service.impl;
 
 
 import com.wishalpha.schoolmanagement.master.entity.UserEntity;
