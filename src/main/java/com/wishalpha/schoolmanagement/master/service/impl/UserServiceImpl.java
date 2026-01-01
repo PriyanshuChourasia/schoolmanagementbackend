@@ -1,6 +1,7 @@
 package com.wishalpha.schoolmanagement.master.service.impl;
 
 
+import com.wishalpha.schoolmanagement.common.exceptionHandler.exceptions.DataNotFoundException;
 import com.wishalpha.schoolmanagement.master.dto.CreateUserDTO;
 import com.wishalpha.schoolmanagement.master.dto.UserDTO;
 import com.wishalpha.schoolmanagement.master.entity.UserEntity;
@@ -39,10 +40,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO create(CreateUserDTO createUserDTO){
         UserEntity user = UserMapper.toEntity(createUserDTO);
-        logger.info("User, {}",createUserDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(createUserDTO.getEmail()));
+        user.setPassword(passwordEncoder.encode("1234567890"));
         user.setCode(codeGenerator.generateCode(createUserDTO.getEmail()));
         UserEntity createUser = userRepository.save(user);
         return UserMapper.toDTO(createUser);
+    }
+
+    @Override
+    public UserDTO getByEmail(String email){
+        UserEntity user = userRepository.findByEmail(email);
+        if(user == null){
+            throw new DataNotFoundException("User not found: " + email);
+        }
+        return UserMapper.toDTO(user);
     }
 }

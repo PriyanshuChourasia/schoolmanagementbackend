@@ -2,10 +2,10 @@ package com.wishalpha.schoolmanagement.master.entity;
 
 import com.wishalpha.schoolmanagement.common.entity.BaseEntity;
 import com.wishalpha.schoolmanagement.common.utils.enums.Gender;
+import com.wishalpha.schoolmanagement.master.entity.listener.UserEntityListener;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

@@ -45,4 +45,69 @@ public class OrganisationEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organisation_type_id",nullable = false)
     private OrganisationTypeEntity organisationType;
+
+    public OrganisationStatusEntity getOrganisationStatus() {
+        return organisationStatus;
+    }
+
+    public void setOrganisationStatus(OrganisationStatusEntity organisationStatus) {
+        this.organisationStatus = organisationStatus;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public boolean isBranch() {
+        return isBranch;
+    }
+
+    public void setBranch(boolean branch) {
+        isBranch = branch;
+    }
+
+    public LocalDate getEstablishmentYear() {
+        return establishmentYear;
+    }
+
+    public void setEstablishmentYear(LocalDate establishmentYear) {
+        this.establishmentYear = establishmentYear;
+    }
+
+    public LocalDate getTerminationYear() {
+        return terminationYear;
+    }
+
+    public void setTerminationYear(LocalDate terminationYear) {
+        this.terminationYear = terminationYear;
+    }
+
+    public String getOrganisationSchemaId() {
+        return organisationSchemaId;
+    }
+
+    public void setOrganisationSchemaId(String organisationSchemaId) {
+        this.organisationSchemaId = organisationSchemaId;
+    }
+
+    public OrganisationTypeEntity getOrganisationType() {
+        return organisationType;
+    }
+
+    public void setOrganisationType(OrganisationTypeEntity organisationType) {
+        this.organisationType = organisationType;
+    }
+
 }

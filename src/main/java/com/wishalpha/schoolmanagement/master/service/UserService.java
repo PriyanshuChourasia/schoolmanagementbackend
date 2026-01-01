@@ -10,4 +10,6 @@ public interface UserService {
     UserDTO create(CreateUserDTO createUserDTO);
 
     List<UserDTO> getAll();
+
+    UserDTO getByEmail(String email);
 }

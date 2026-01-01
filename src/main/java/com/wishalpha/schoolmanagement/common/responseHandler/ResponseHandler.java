@@ -17,12 +17,34 @@ public class ResponseHandler {
         return new ResponseEntity<Map<String,Object>>(res,httpStatus);
     }
 
+    public static <T> ResponseEntity<Map<String,Object>> generateResponse(String key, String value, HttpStatus httpStatus){
+        Map<String,Object> res = new HashMap<String,Object>();
+        Map<String,Object> keyVal = new HashMap<>();
+        keyVal.put("key",key);
+        keyVal.put("value",value);
+        res.put("data",keyVal);
+        res.put("success",true);
+        res.put("code",httpStatus.value());
+        res.put("message", "Data fetched successfully");
+        return new ResponseEntity<Map<String,Object>>(res,httpStatus);
+    }
+
+
     public static <T> ResponseEntity<Map<String,Object>> generateResponse(List<T> data, HttpStatus httpStatus){
         Map<String,Object> res = new HashMap<String,Object>();
         res.put("data",data);
         res.put("success",true);
         res.put("code",httpStatus.value());
         res.put("message", data.size()+" data fetched successfully");
+        return new ResponseEntity<Map<String,Object>>(res,httpStatus);
+    }
+
+    public static <T> ResponseEntity<Map<String,Object>> generateResponse(Map<String,Object> data, HttpStatus httpStatus){
+        Map<String,Object> res = new HashMap<String,Object>();
+        res.put("data",data);
+        res.put("success",true);
+        res.put("code",httpStatus.value());
+        res.put("message", " data fetched successfully");
         return new ResponseEntity<Map<String,Object>>(res,httpStatus);
     }
 

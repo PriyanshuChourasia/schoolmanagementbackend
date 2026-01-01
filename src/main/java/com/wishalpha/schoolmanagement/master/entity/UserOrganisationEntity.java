@@ -34,4 +34,35 @@ public class UserOrganisationEntity extends BaseEntity {
     @JoinColumn(name = "organisation_id", nullable = false)
     private OrganisationEntity organisationId;
 
+    public UserEntity getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UserEntity userId) {
+        this.userId = userId;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public LocalDate getJoiningDate() {
+        return joiningDate;
+    }
+
+    public void setJoiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
+    }
+
+    public OrganisationEntity getOrganisationId() {
+        return organisationId;
+    }
+
+    public void setOrganisationId(OrganisationEntity organisationId) {
+        this.organisationId = organisationId;
+    }
 }
