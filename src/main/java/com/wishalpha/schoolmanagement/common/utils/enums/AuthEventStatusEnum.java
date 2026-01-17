@@ -1,0 +1,17 @@
+package com.wishalpha.schoolmanagement.common.utils.enums;
+
+public enum AuthEventStatusEnum {
+    LOGIN_SUCCESS,
+    FAILED_BAD_CREDENTIALS,
+    FAILED_USER_NOT_FOUND,
+    FAILED_ACCOUNT_LOCKED,
+    FAILED_ACCOUNT_DISABLED,
+    FAILED_PASSWORD_EXPIRED,
+    FAILED_OTP_REQUIRED,
+    FAILED_OTP_INVALID,
+
+    TOKEN_EXPIRED,
+    TOKEN_REVOKED,
+
+    LOGOUT_SUCCESS
+}

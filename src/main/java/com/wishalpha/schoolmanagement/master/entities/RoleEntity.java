@@ -1,4 +1,4 @@
-package com.wishalpha.schoolmanagement.master.entity;
+package com.wishalpha.schoolmanagement.master.entities;
 
 
 import com.wishalpha.schoolmanagement.common.entity.BaseEntity;
@@ -24,8 +24,34 @@ public class RoleEntity extends BaseEntity {
     private String name;
 
     @NotNull(message = "Code name is required")
-    @Column(name = "code",nullable = false, unique = true)
+    @Column(name = "code", unique = true)
     private String code;
 
     private String description;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
 }

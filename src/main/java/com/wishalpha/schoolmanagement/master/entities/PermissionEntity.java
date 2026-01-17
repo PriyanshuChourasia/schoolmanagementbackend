@@ -1,4 +1,4 @@
-package com.wishalpha.schoolmanagement.master.entity;
+package com.wishalpha.schoolmanagement.master.entities;
 
 import com.wishalpha.schoolmanagement.common.entity.BaseEntity;
 import jakarta.persistence.Column;
@@ -22,9 +22,16 @@ public class PermissionEntity extends BaseEntity {
     @Column(name = "name",nullable = false, unique = true)
     private String name;
 
-    @NotNull(message = "Code name is required")
-    @Column(name = "code",nullable = false, unique = true)
-    private String code;
-
     private String description;
+
+    @Column(name = "api_pattern")
+    private String apiPattern;
+
+
 }
+
+//LOGIN
+//        LOGOUT
+//REFRESH_TOKEN
+//        CHANGE_PASSWORD
+//

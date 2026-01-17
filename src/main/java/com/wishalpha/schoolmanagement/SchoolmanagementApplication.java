@@ -22,7 +22,6 @@ public class SchoolmanagementApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args){
-        logger.info("Application Started");
         logger.info("Application URL:  {}",applicationURL);
         logger.info("Swagger UI URL:  {}",swaggerUI);
     }
