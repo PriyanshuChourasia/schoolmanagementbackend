@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
 
 public class LoginDTO {
 
-    @Schema(example = "avi@admin.com")
+    @Schema(example = "admin@admin.com")
     @Email(message = "Invalid email")
     @NotNull(message = "Email cannot be empty")
     @NotNull(message = "Please provide a correct email")

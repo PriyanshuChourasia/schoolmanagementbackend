@@ -49,7 +49,7 @@ public class JwtUtils {
                 .subject(username)
                 .issuer(applicationName)
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis()+ 4 * 24 * 60 * 60 + 1000L))
+                .expiration(new Date(System.currentTimeMillis()+ 4L * 24 * 60 * 60 * 1000))
                 .signWith(key())
                 .compact();
     }
@@ -60,7 +60,7 @@ public class JwtUtils {
                 .subject(username)
                 .issuer(applicationName)
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis()+ 7 * 24 * 60 * 60 + 1000L))
+                .expiration(new Date(System.currentTimeMillis()+ 7L * 24 * 60 * 60 * 1000))
                 .signWith(key())
                 .compact();
     }

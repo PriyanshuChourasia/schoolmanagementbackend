@@ -1,7 +1,8 @@
 package com.wishalpha.schoolmanagement.auth.service.impl;
 
 
-import com.wishalpha.schoolmanagement.master.entity.UserEntity;
+import com.wishalpha.schoolmanagement.auth.entity.UserPrincipal;
+import com.wishalpha.schoolmanagement.master.entities.UserEntity;
 import com.wishalpha.schoolmanagement.master.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,13 +24,14 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         UserEntity userEntity = userRepository.findByEmail(username);
-        logger.error("Entity: {}",userEntity);
         if(userEntity == null){
             throw new UsernameNotFoundException("Email not found: "+ username);
         }
-        return User.builder()
-                .username(userEntity.getEmail())
-                .password(userEntity.getPassword())
-                .build();
+
+        return new UserPrincipal(userEntity);
+//        return User.builder()
+//                .username(userEntity.getEmail())
+//                .password(userEntity.getPassword())
+//                .build();
     }
 }

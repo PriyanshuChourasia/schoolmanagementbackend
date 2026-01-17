@@ -2,9 +2,9 @@ package com.wishalpha.schoolmanagement.master.service.impl;
 
 
 import com.wishalpha.schoolmanagement.common.exceptionHandler.exceptions.DataNotFoundException;
-import com.wishalpha.schoolmanagement.master.dto.CreateUserDTO;
-import com.wishalpha.schoolmanagement.master.dto.UserDTO;
-import com.wishalpha.schoolmanagement.master.entity.UserEntity;
+import com.wishalpha.schoolmanagement.master.dtos.user.CreateUserDTO;
+import com.wishalpha.schoolmanagement.master.dtos.user.UserDTO;
+import com.wishalpha.schoolmanagement.master.entities.UserEntity;
 import com.wishalpha.schoolmanagement.master.mapper.UserMapper;
 import com.wishalpha.schoolmanagement.master.repository.UserRepository;
 import com.wishalpha.schoolmanagement.master.service.UserService;
@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private CodeGenerator codeGenerator;
 
+    @Transactional(readOnly = true)
     @Override
     public List<UserDTO> getAll(){
         List<UserEntity> userEntities = userRepository.findAll();

@@ -8,12 +8,22 @@ import java.util.List;
 import java.util.Map;
 
 public class ResponseHandler {
-    public static <T> ResponseEntity<Map<String,Object>> generateResponse(String message, List<T> data, HttpStatus httpStatus){
+    public static <T> ResponseEntity<Map<String,Object>> generateResponse(List<T> data,String message, HttpStatus httpStatus){
         Map<String,Object> res = new HashMap<String,Object>();
         res.put("data",data);
         res.put("success",true);
         res.put("code",httpStatus.value());
         res.put("message", message);
+        return new ResponseEntity<Map<String,Object>>(res,httpStatus);
+    }
+
+
+    public static <T> ResponseEntity<Map<String,Object>> generateResponse(List<T> data, HttpStatus httpStatus){
+        Map<String,Object> res = new HashMap<String,Object>();
+        res.put("data",data);
+        res.put("success",true);
+        res.put("code",httpStatus.value());
+        res.put("message", data.size()+" data fetched successfully");
         return new ResponseEntity<Map<String,Object>>(res,httpStatus);
     }
 
@@ -30,14 +40,6 @@ public class ResponseHandler {
     }
 
 
-    public static <T> ResponseEntity<Map<String,Object>> generateResponse(List<T> data, HttpStatus httpStatus){
-        Map<String,Object> res = new HashMap<String,Object>();
-        res.put("data",data);
-        res.put("success",true);
-        res.put("code",httpStatus.value());
-        res.put("message", data.size()+" data fetched successfully");
-        return new ResponseEntity<Map<String,Object>>(res,httpStatus);
-    }
 
     public static <T> ResponseEntity<Map<String,Object>> generateResponse(Map<String,Object> data, HttpStatus httpStatus){
         Map<String,Object> res = new HashMap<String,Object>();
@@ -48,7 +50,7 @@ public class ResponseHandler {
         return new ResponseEntity<Map<String,Object>>(res,httpStatus);
     }
 
-    public static <T> ResponseEntity<Map<String,Object>> generateResponse(String message, Object data, HttpStatus httpStatus){
+    public static <T> ResponseEntity<Map<String,Object>> generateResponse(Object data, String message, HttpStatus httpStatus){
         Map<String,Object> res = new HashMap<String,Object>();
         res.put("data",data);
         res.put("message",message);

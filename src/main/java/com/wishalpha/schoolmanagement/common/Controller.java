@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/greeting")
+@RequestMapping("/v1/greeting")
 @Tag(name = "Index Controller", description = "Base level controller")
 public class Controller {
 

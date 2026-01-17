@@ -1,9 +1,9 @@
-package com.wishalpha.schoolmanagement.master.controller;
+package com.wishalpha.schoolmanagement.master.controllers;
 
 
 import com.wishalpha.schoolmanagement.common.responseHandler.ResponseHandler;
-import com.wishalpha.schoolmanagement.master.dto.CreateUserDTO;
-import com.wishalpha.schoolmanagement.master.dto.UserDTO;
+import com.wishalpha.schoolmanagement.master.dtos.user.CreateUserDTO;
+import com.wishalpha.schoolmanagement.master.dtos.user.UserDTO;
 import com.wishalpha.schoolmanagement.master.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/v1/users")
 @Tag(name = "User API's")
 public class UserController {
 
@@ -35,6 +35,6 @@ public class UserController {
     public ResponseEntity<Map<String,Object>> create(@Valid @RequestBody CreateUserDTO createUserDTO){
         UserDTO userDTO = userService.create(createUserDTO);
         String message = "User created successfully";
-        return ResponseHandler.generateResponse(message,userDTO, HttpStatus.CREATED);
+        return ResponseHandler.generateResponse(userDTO,message, HttpStatus.CREATED);
     }
 }

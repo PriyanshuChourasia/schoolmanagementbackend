@@ -4,8 +4,8 @@ package com.wishalpha.schoolmanagement.auth.controller;
 import com.wishalpha.schoolmanagement.auth.dto.LoginDTO;
 import com.wishalpha.schoolmanagement.auth.utils.JwtUtils;
 import com.wishalpha.schoolmanagement.common.responseHandler.ResponseHandler;
-import com.wishalpha.schoolmanagement.master.dto.CreateUserDTO;
-import com.wishalpha.schoolmanagement.master.dto.UserDTO;
+import com.wishalpha.schoolmanagement.master.dtos.user.CreateUserDTO;
+import com.wishalpha.schoolmanagement.master.dtos.user.UserDTO;
 import com.wishalpha.schoolmanagement.master.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,7 +30,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/v1/auth")
 @Tag(name = "Auth")
 public class AuthenticationController {
 
@@ -48,7 +48,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<Map<String,Object>> register(@Valid @RequestBody CreateUserDTO createUserDTO){
         UserDTO userDTO = userService.create(createUserDTO);
-        return ResponseHandler.generateResponse("User created successfully",userDTO, HttpStatus.CREATED);
+        return ResponseHandler.generateResponse(userDTO,"User created successfully", HttpStatus.CREATED);
     }
 
     @PostMapping("/sign-in")
@@ -78,6 +78,6 @@ public class AuthenticationController {
         String username = jwtUtils.getUserNameFromToken(token);
         UserDTO userDTO = userService.getByEmail(username);
         String message = "User Profile fetched successfully";
-        return ResponseHandler.generateResponse(message,userDTO,HttpStatus.OK);
+        return ResponseHandler.generateResponse(userDTO,message,HttpStatus.OK);
     }
 }

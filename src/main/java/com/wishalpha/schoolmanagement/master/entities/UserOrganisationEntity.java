@@ -1,4 +1,4 @@
-package com.wishalpha.schoolmanagement.master.entity;
+package com.wishalpha.schoolmanagement.master.entities;
 
 
 import com.wishalpha.schoolmanagement.common.entity.BaseEntity;

@@ -1,4 +1,4 @@
-package com.wishalpha.schoolmanagement.master.dto;
+package com.wishalpha.schoolmanagement.master.dtos.user;
 
 import com.wishalpha.schoolmanagement.common.utils.enums.Gender;
 

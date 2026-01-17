@@ -1,10 +1,14 @@
 package com.wishalpha.schoolmanagement.common.entity;
 
 
+import com.github.f4b6a3.uuid.UuidCreator;
+import com.wishalpha.schoolmanagement.master.utils.AuditorAwareUtil;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -18,19 +22,22 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class BaseEntity {
 
+    private final static Logger logger = LoggerFactory.getLogger(BaseEntity.class);
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(updatable = false,nullable = false,unique = true)
-    private UUID uuid;
+    private UUID id;
 
 
-    @Column(name = "created_by")
-    private String createdBy;
+    @Column(name = "created_by",updatable = false)
+    private UUID createdBy;
 
     @Column(name = "updated_by")
-    private String updatedBy;
+    private UUID updatedBy;
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)
@@ -51,35 +58,28 @@ public abstract class BaseEntity {
         this.createdAt = createdAt;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
+
         this.id = id;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getCreatedBy() {
+    public UUID getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(UUID createdBy) {
         this.createdBy = createdBy;
     }
 
-    public String getUpdatedBy() {
+    public UUID getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(String updatedBy) {
+    public void setUpdatedBy(UUID updatedBy) {
         this.updatedBy = updatedBy;
     }
 
@@ -100,11 +100,21 @@ public abstract class BaseEntity {
     }
 
 
-
     @PrePersist
-    public void prePersist(){
-        if(uuid == null){
-            uuid = UUID.randomUUID();
+    public void onCreate(){
+        if(this.id == null){
+            this.id = UuidCreator.getTimeOrderedEpoch();
         }
+
+        UUID auditorId = AuditorAwareUtil.getCurrentAuditor();
+        this.createdBy = auditorId;
+        this.updatedBy = auditorId;
+    }
+
+
+    @PreUpdate
+    public void onUpdate(){
+        logger.info("Base Entity Run: -----------------------------------------");
+        this.updatedBy = AuditorAwareUtil.getCurrentAuditor();
     }
 }

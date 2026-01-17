@@ -1,6 +1,7 @@
-package com.wishalpha.schoolmanagement.master.dto;
+package com.wishalpha.schoolmanagement.master.dtos.user;
 
 import com.wishalpha.schoolmanagement.common.utils.enums.Gender;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -8,22 +9,29 @@ import jakarta.validation.constraints.Past;
 import java.time.LocalDate;
 
 public class CreateUserDTO {
+
+    @Schema(example = "Priyanshu")
     @NotNull(message = "Name is required")
     private String name;
 
+    @Schema(example = "admin@admin.com")
     @NotNull(message = "Email is required")
     @Email(message = "Invalid email")
     private String email;
 
+    @Schema(example = "1234567890")
     @NotNull(message = "Contact No is required")
     private String contactNo;
 
+    @Schema(example = "1234567890")
     private String altContactNo;
 
+    @Schema(example = "2001-05-06")
     @NotNull(message = "DOB is required")
     @Past(message = "DOB must be a past date")
     private LocalDate dob;
 
+    @Schema(example = "MALE")
     private Gender gender;
 
 

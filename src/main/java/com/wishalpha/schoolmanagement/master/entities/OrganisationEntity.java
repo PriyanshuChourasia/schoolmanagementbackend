@@ -1,6 +1,8 @@
-package com.wishalpha.schoolmanagement.master.entity;
+package com.wishalpha.schoolmanagement.master.entities;
 
 import com.wishalpha.schoolmanagement.common.entity.BaseEntity;
+import com.wishalpha.schoolmanagement.master.utils.enums.OrganisationStatusEnum;
+import com.wishalpha.schoolmanagement.master.utils.enums.OrganisationTypeEnum;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 
 @Entity
@@ -26,8 +29,9 @@ public class OrganisationEntity extends BaseEntity {
     @Column(unique = true)
     private String code;
 
-    @Column(name = "is_branch", nullable = false)
-    private boolean isBranch = false;
+    @ManyToOne
+    @JoinColumn(name = "parent_organisation_id")
+    private OrganisationEntity parentOrganisation;
 
     @Column(name = "establishment_year", nullable = false)
     private LocalDate establishmentYear;
@@ -36,22 +40,42 @@ public class OrganisationEntity extends BaseEntity {
     private LocalDate terminationYear;
 
     @Column(name = "organisation_schema_id")
-    private String organisationSchemaId;
+    private UUID organisationSchemaId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organisation_status_id", nullable = false)
-    private OrganisationStatusEntity organisationStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "organisation_status", nullable = false)
+    private OrganisationStatusEnum organisationStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organisation_type_id",nullable = false)
-    private OrganisationTypeEntity organisationType;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "organisation_type_id",nullable = false)
+//    private OrganisationTypeEntity organisationType;
 
-    public OrganisationStatusEntity getOrganisationStatus() {
+    @Enumerated(EnumType.STRING)
+    @Column(name = "organisation_type")
+    private OrganisationTypeEnum organisationTypeEnum;
+
+    public OrganisationEntity getParentOrganisation() {
+        return parentOrganisation;
+    }
+
+    public void setParentOrganisation(OrganisationEntity parentOrganisation) {
+        this.parentOrganisation = parentOrganisation;
+    }
+
+    public OrganisationStatusEnum getOrganisationStatus() {
         return organisationStatus;
     }
 
-    public void setOrganisationStatus(OrganisationStatusEntity organisationStatus) {
+    public void setOrganisationStatus(OrganisationStatusEnum organisationStatus) {
         this.organisationStatus = organisationStatus;
+    }
+
+    public OrganisationTypeEnum getOrganisationTypeEnum() {
+        return organisationTypeEnum;
+    }
+
+    public void setOrganisationTypeEnum(OrganisationTypeEnum organisationTypeEnum) {
+        this.organisationTypeEnum = organisationTypeEnum;
     }
 
     public String getName() {
@@ -70,14 +94,6 @@ public class OrganisationEntity extends BaseEntity {
         this.code = code;
     }
 
-    public boolean isBranch() {
-        return isBranch;
-    }
-
-    public void setBranch(boolean branch) {
-        isBranch = branch;
-    }
-
     public LocalDate getEstablishmentYear() {
         return establishmentYear;
     }
@@ -94,20 +110,12 @@ public class OrganisationEntity extends BaseEntity {
         this.terminationYear = terminationYear;
     }
 
-    public String getOrganisationSchemaId() {
+    public UUID getOrganisationSchemaId() {
         return organisationSchemaId;
     }
 
-    public void setOrganisationSchemaId(String organisationSchemaId) {
+    public void setOrganisationSchemaId(UUID organisationSchemaId) {
         this.organisationSchemaId = organisationSchemaId;
-    }
-
-    public OrganisationTypeEntity getOrganisationType() {
-        return organisationType;
-    }
-
-    public void setOrganisationType(OrganisationTypeEntity organisationType) {
-        this.organisationType = organisationType;
     }
 
 }

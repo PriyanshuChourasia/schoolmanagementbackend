@@ -1,7 +1,7 @@
 package com.wishalpha.schoolmanagement.master.service;
 
-import com.wishalpha.schoolmanagement.master.dto.CreateUserDTO;
-import com.wishalpha.schoolmanagement.master.dto.UserDTO;
+import com.wishalpha.schoolmanagement.master.dtos.user.CreateUserDTO;
+import com.wishalpha.schoolmanagement.master.dtos.user.UserDTO;
 
 import java.util.List;
 

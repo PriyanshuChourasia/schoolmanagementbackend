@@ -1,6 +1,6 @@
-package com.wishalpha.schoolmanagement.master.entity.listener;
+package com.wishalpha.schoolmanagement.master.entities.listener;
 
-import com.wishalpha.schoolmanagement.master.entity.UserEntity;
+import com.wishalpha.schoolmanagement.master.entities.UserEntity;
 import jakarta.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +13,10 @@ public class UserEntityListener {
     @PreUpdate
     @PreRemove
     private void beforeAnyUpdate(UserEntity user){
-        if(user.getId() == 0){
+        if(user.getId().toString().isBlank()){
             logger.info("[USER] About to add user");
         }else{
-            logger.info("[USER] About to update/delete user: {}",user.getCode());
+            logger.info("[USER] About to update/delete user: {}",user.getId());
         }
     }
 
@@ -25,7 +25,7 @@ public class UserEntityListener {
     @PostUpdate
     @PostRemove
     private void afterAnyUpdate(UserEntity user){
-        logger.info("[USER] add update delete complete for user: {}",user.getUuid());
+        logger.info("[USER] add update delete complete for user");
     }
 
     @PostLoad
