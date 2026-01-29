@@ -1,6 +1,7 @@
 package com.wishalpha.schoolmanagement.master.dtos.user;
 
 import com.wishalpha.schoolmanagement.common.utils.enums.Gender;
+import com.wishalpha.schoolmanagement.master.utils.enums.AccountStatus;
 
 import java.time.LocalDate;
 
@@ -14,13 +15,15 @@ public class UserDTO {
     private String altContactNo;
     private Gender gender;
     private LocalDate dob;
+    private AccountStatus accountStatus;
 
-    public String getContactNo() {
-        return contactNo;
+
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public String getName() {
@@ -47,12 +50,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public String getContactNo() {
+        return contactNo;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
     public String getAltContactNo() {
@@ -71,12 +74,20 @@ public class UserDTO {
         this.gender = gender;
     }
 
-    public void setDob(LocalDate dob){
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
-    public LocalDate getDob(){
-        return this.dob;
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
 }

@@ -87,4 +87,12 @@ public class GlobalExceptionHandler {
     }
 
 
+//    UnSupportedOperationException
+    @ExceptionHandler(UnsupportedOperationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<Map<String,Object>> unSupportedOperationException(UnsupportedOperationException ex){
+        return ResponseHandler.generateErrorResponse(ex.getMessage(),HttpStatus.CONFLICT);
+    }
+
+
 }

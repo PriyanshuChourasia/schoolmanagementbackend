@@ -11,6 +11,7 @@ public class ApplicationModuleMapper {
         applicationModuleEntity.setCode(moduleCreateDTO.code());
         applicationModuleEntity.setDescription(moduleCreateDTO.description());
         applicationModuleEntity.setStatus(moduleCreateDTO.status());
+        applicationModuleEntity.setFrontendRoutePath(moduleCreateDTO.frontEndPath());
         return applicationModuleEntity;
     }
 
@@ -20,6 +21,7 @@ public class ApplicationModuleMapper {
         moduleDTO.setCode(applicationModuleEntity.getCode());
         moduleDTO.setDescription(applicationModuleEntity.getDescription());
         moduleDTO.setStatus(applicationModuleEntity.getStatus());
+        moduleDTO.setFrontEndPath(applicationModuleEntity.getFrontendRoutePath());
         return moduleDTO;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -42,11 +43,11 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/swagger-ui.html").permitAll()
                         .requestMatchers("/v3/api-docs/**").permitAll()
-                        .requestMatchers("/auth/sign-in","auth/register","/greeting","/**").permitAll()
+                        .requestMatchers("v1/auth/sign-in","v1/auth/register","/greeting").permitAll()
                         .anyRequest().authenticated()
         ).headers(
                 headers -> headers.frameOptions(
-                        frameOptionsConfig -> frameOptionsConfig.sameOrigin()
+                        HeadersConfigurer.FrameOptionsConfig::sameOrigin
                 )
         ).addFilterBefore(
                 authTokenFilter(), UsernamePasswordAuthenticationFilter.class
