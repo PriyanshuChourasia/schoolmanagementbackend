@@ -3,6 +3,9 @@ package com.wishalpha.schoolmanagement.master.mapper;
 import com.wishalpha.schoolmanagement.master.dtos.user.CreateUserDTO;
 import com.wishalpha.schoolmanagement.master.dtos.user.UserDTO;
 import com.wishalpha.schoolmanagement.master.entities.UserEntity;
+import jakarta.persistence.Enumerated;
+
+import java.util.Enumeration;
 
 
 public class UserMapper {
@@ -13,7 +16,7 @@ public class UserMapper {
         user.setContactNo(createUserDTO.getContactNo());
         user.setDob(createUserDTO.getDob());
         user.setGender(createUserDTO.getGender());
-        user.setActive(true);
+        user.setAccountStatus(createUserDTO.getAccountStatus());
         user.setAltContactNo(createUserDTO.getAltContactNo());
         return user;
     }
@@ -21,7 +24,7 @@ public class UserMapper {
     public static UserDTO toDTO(UserEntity user){
         UserDTO userDTO = new UserDTO();
         userDTO.setName(user.getName());
-        userDTO.setActive(user.isActive());
+        userDTO.setAccountStatus(user.getAccountStatus());
         userDTO.setDob(user.getDob());
         userDTO.setCode(user.getCode());
         userDTO.setContactNo(user.getContactNo());

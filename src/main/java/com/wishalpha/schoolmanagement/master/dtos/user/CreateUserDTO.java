@@ -1,6 +1,7 @@
 package com.wishalpha.schoolmanagement.master.dtos.user;
 
 import com.wishalpha.schoolmanagement.common.utils.enums.Gender;
+import com.wishalpha.schoolmanagement.master.utils.enums.AccountStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -34,14 +35,11 @@ public class CreateUserDTO {
     @Schema(example = "MALE")
     private Gender gender;
 
+    @Schema(example = "ACTIVE")
+    private AccountStatus accountStatus;
 
-    public String getContactNo() {
-        return contactNo;
-    }
 
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
+
 
     public String getName() {
         return name;
@@ -57,6 +55,14 @@ public class CreateUserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
     public String getAltContactNo() {
@@ -81,6 +87,14 @@ public class CreateUserDTO {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
 }

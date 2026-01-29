@@ -29,6 +29,9 @@ public class ApplicationModuleEntity extends BaseEntity {
 
     private String description;
 
+    @Column(name = "frontend_route_path")
+    private String frontendRoutePath;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ApplicationStatusEnum status;
@@ -39,5 +42,5 @@ public class ApplicationModuleEntity extends BaseEntity {
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-    private List<ApplicationFeatureEntity> features;
+    private List<ApplicationModuleFeatureEntity> features;
 }

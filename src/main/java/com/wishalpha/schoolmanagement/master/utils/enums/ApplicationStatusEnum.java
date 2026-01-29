@@ -7,7 +7,8 @@ public enum ApplicationStatusEnum {
     ACTIVE("active"),
     INACTIVE("inactive"),
     BLOCKED("blocked"),
-    MAINTENANCE("maintenance");
+    MAINTENANCE("maintenance"),
+    DRAFT("draft");
 
     private final String applicationStatus;
 

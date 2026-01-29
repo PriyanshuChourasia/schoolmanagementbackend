@@ -2,6 +2,7 @@ package com.wishalpha.schoolmanagement.master.entities;
 
 import com.wishalpha.schoolmanagement.common.entity.BaseEntity;
 import com.wishalpha.schoolmanagement.common.utils.enums.Gender;
+import com.wishalpha.schoolmanagement.master.utils.enums.AccountStatus;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -22,6 +23,7 @@ import java.time.LocalDate;
 @Table(name = "users")
 @Tag(name = "User Schema")
 public class UserEntity extends BaseEntity {
+
 
     @Column(nullable = false)
     private String name;
@@ -44,81 +46,27 @@ public class UserEntity extends BaseEntity {
 
 //    @Enumerated(EnumType.STRING)
 //    @Column(name = "user_type")
-//    private UserTypeEnum userType;
+    //    private UserTypeEnum userType;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(name = "is_active")
-    private boolean isActive = true;
+    @Column(name = "account_status")
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
 
     @Column(nullable = false)
     @NotBlank(message = "Password cannot be empty")
     @Size(min = 6,message = "Password length cannot be less than 6")
     private String password;
 
-    public Gender getGender() {
-        return gender;
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public String getAltContactNo() {
-        return altContactNo;
-    }
-
-    public void setAltContactNo(String altContactNo) {
-        this.altContactNo = altContactNo;
-    }
-
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
     public String getName() {
@@ -129,8 +77,61 @@ public class UserEntity extends BaseEntity {
         this.name = name;
     }
 
+    public String getCode() {
+        return code;
+    }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+    public String getAltContactNo() {
+        return altContactNo;
+    }
+
+    public void setAltContactNo(String altContactNo) {
+        this.altContactNo = altContactNo;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 
 }

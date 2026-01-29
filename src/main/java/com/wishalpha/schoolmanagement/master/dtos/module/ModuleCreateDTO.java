@@ -10,5 +10,6 @@ public record ModuleCreateDTO (
     @NotBlank(message = "Name is required")  String name,
     @NotBlank(message = "Code is required") String code,
     String description,
-    @NotNull(message = "Status is required") ApplicationStatusEnum status
+    @NotNull(message = "Status is required") ApplicationStatusEnum status,
+    @NotBlank(message = "Frontend Path cannot be blank") String frontEndPath
 ){}

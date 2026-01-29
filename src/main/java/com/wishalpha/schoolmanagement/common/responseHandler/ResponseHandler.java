@@ -7,7 +7,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ResponseHandler {
+public final class ResponseHandler {
+
+    private ResponseHandler(){
+        throw new UnsupportedOperationException("Utility Class");
+    }
+
     public static <T> ResponseEntity<Map<String,Object>> generateResponse(List<T> data,String message, HttpStatus httpStatus){
         Map<String,Object> res = new HashMap<String,Object>();
         res.put("data",data);

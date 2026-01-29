@@ -2,23 +2,21 @@ package com.wishalpha.schoolmanagement.master.entities;
 
 
 import com.wishalpha.schoolmanagement.common.entity.BaseEntity;
+import com.wishalpha.schoolmanagement.master.utils.enums.ApplicationStatusEnum;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Table(name = "application_features")
+@Table(name = "application_module_features")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Tag(name= "Application Features")
-public class ApplicationFeatureEntity extends BaseEntity {
+public class ApplicationModuleFeatureEntity extends BaseEntity {
 
-    @Column(name = "name",unique = true, nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "code",unique = true, nullable = false)
@@ -27,14 +25,14 @@ public class ApplicationFeatureEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "api_path")
+    private String apiPath;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status",nullable = false)
+    private ApplicationStatusEnum status;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id", nullable = false)
     private ApplicationModuleEntity module;
 }
-
-
-//AUTH
-//        USER_MANAGEMENT
-//ROLE_MANAGEMENT
-//        TENANT_MANAGEMENT
-//BRANCH_MANAGEMENT
