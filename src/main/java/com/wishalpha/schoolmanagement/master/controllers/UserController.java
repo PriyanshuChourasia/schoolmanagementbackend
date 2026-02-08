@@ -8,8 +8,10 @@ import com.wishalpha.schoolmanagement.master.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +20,12 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/v1/users")
+@RequestMapping(path = "/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
+@Slf4j
 @Tag(name = "User API's")
 public class UserController {
 
-    @Autowired
-    private  UserService userService;
+    private final UserService userService;
 
     @GetMapping("")
     public ResponseEntity<Map<String,Object>> index(){

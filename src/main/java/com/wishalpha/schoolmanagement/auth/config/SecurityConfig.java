@@ -43,7 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/swagger-ui.html").permitAll()
                         .requestMatchers("/v3/api-docs/**").permitAll()
-                        .requestMatchers("v1/auth/sign-in","v1/auth/register","/greeting").permitAll()
+                        .requestMatchers("/v1/auth/sign-in","/v1/auth/register","/greeting").permitAll()
                         .anyRequest().authenticated()
         ).headers(
                 headers -> headers.frameOptions(
